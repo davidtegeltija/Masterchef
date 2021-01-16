@@ -1,21 +1,14 @@
-<html>
-    <head>
-        <title>
-            Masterchef
-        </title>
-    </head>
-    <body>
-        <b>Manca</b> je najlepša! Zakaj to dela??
-        % a = 13 * 7
-        baje je ati {{a}}
-        % for i in range(5):
-        <li>{{i ** 2}} </li>
-        %end
-        <form action="/sestej/" method="POST"> 
-            a: <input type="text" name="a" placeholder="10">
-            b: <input type="text", name="b" value="15">
-            <input type="submit" value = "a + b">
-        </form>
-        <footer>2021, David Tegeltija</footer>
-    </body>
-</html>
+%rebase("bootstrap.html")
+  
+    
+
+    % a = 13 * 7
+    baje je to enako 13*7 = {{a}}
+    % for i in range(5):
+    <li>{{i ** 2}} </li>
+    %end
+    <form action="/sestej/" method="POST"> 
+        a: <input type="text" name="a" placeholder="10">
+        b: <input type="text", name="b" value="15">
+        <input type="submit" value = "a + b">
+    </form>
