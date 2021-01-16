@@ -1,6 +1,5 @@
 # Masterchef
 
-Spletna stran na kateri uporabnik deli svoje kuharske recepte z drugimi
+Spletna stran na kateri uporabnik deli svoje kuharske recepte z drugimi.
 
-Projekt pri predmetu računalništvu v 2. letniku fizike.
-A to pa dela?
+Projekt pri predmetu računalništva v 2. letniku fizike.
