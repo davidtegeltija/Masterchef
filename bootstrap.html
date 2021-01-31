@@ -12,43 +12,46 @@
   </head>
   
   <body>
+    
+
+
     <div class="container">
       <h1 style="text-align: center;">Masteršef</h1>
       <br>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item" style="margin: 2px 10px 2px 10px;">
-                            <a class="nav-link active" href="/index"> <b>Domov</b></a>
-                        </li>
-                        <li class="nav-item" style="margin: 2px 10px 2px 10px;">
-                            <a class="nav-link active" href="/recepti">Recepti</a>
-                        </li>
-                        <li class="nav-item" style="margin: 2px 10px 2px 10px;">
-                            <a class="nav-link active" href="/vseckano">Všečkane slike </a>
-                        </li>
-                        <li class="nav-item" style="margin: 2px 10px 2px 10px;">
-                            <a class="nav-link active" href="/dodaj">Dodaj recept</a>
-                        </li>
-                        <li class="nav-item dropdown" style="margin: 2px 10px 2px 10px;">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" method="POST">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+          <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link" href="/"> Domov</a>
+                      </li>
+                      <li class="nav-item" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link" href="/recepti">Recepti</a>
+                      </li>
+                      <li class="nav-item" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link" href="/vseckano">Všečkane slike </a>
+                      </li>
+                      <li class="nav-item" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link" href="/dodaj">Dodaj svoj recept</a>
+                      </li>
+                      <li class="nav-item dropdown" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown</a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                  <form class="d-flex" method="GET" action="error.html">
                     <input class="form-control me-2" type="search" placeholder="Najdi">
-                    <button class="btn btn-outline-success" type="submit">Pojdi</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pojdi</button>
+                  </form>
+              </div>
+          </div>
+      </nav>
       <br>
     {{!base}}
     </div>

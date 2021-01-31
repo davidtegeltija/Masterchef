@@ -1,3 +1,28 @@
 %rebase("bootstrap.html")
 
-<h1> Tukaj bo uporabnik lahko dodal svoj recept </h1>
+<h3> Tukaj lahko dodate svoj recept in ga delite z drugimi obiskovalci te spletne strani </h3>
+<p>
+    Lahko uporabite svoje podatke ali pa kakšen pvsedonim. Če želite, lahko svoj izdelek tudi slikate
+    in to delite z osstalimi.
+</p>
+
+<form method="POST" action="/dodaj_recept" enctype=multipart/form-data>
+    <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Ime" name="Ime">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Priimek" name="Priimek">
+        </div>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Recept" name="Recept">
+      </div>
+    <div class="input-group">
+        <input type=file name=slike accept=".jpg, .png" class="form-control" id="inputGroupFile02">
+    </div>
+    <br>
+    <button class="btn btn-primary" type="submit" value="Upload">Upload</button>
+</form>
+
+
