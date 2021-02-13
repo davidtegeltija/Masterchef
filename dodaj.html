@@ -7,22 +7,26 @@
 </p>
 
 <form method="POST" action="/dodaj_recept" enctype=multipart/form-data>
+  <div class="container">
+      <div class="col col-lg-2">
+        <input type="text" class="form-control" placeholder="Ime" name="Ime">
+      </div>
+      <div class="col col-lg-2">
+        <input type="text" class="form-control" placeholder="Priimek" name="Priimek">
+      </div>  
+    <br>   
     <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Ime" name="Ime">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Priimek" name="Priimek">
-        </div>
-      </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Recept" name="Recept">
+        <label for="text"> <b>Sem napišite svoj recept</b></label>
+        <textarea id="text" class="form-control" name="Recept" rows="7" cols="48"></textarea>
       </div>
+    </div>
+  
     <div class="input-group">
         <input type=file name=slike accept=".jpg, .png" class="form-control" id="inputGroupFile02">
     </div>
     <br>
-    <button class="btn btn-primary" type="submit" value="Upload">Upload</button>
+    <button class="btn btn-primary" type="submit" value="Upload">Naloži</button>
+  </div>
 </form>
-
 

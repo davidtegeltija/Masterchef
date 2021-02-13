@@ -1,12 +1,20 @@
 import bottle
+import os
+import matplotlib
+
 
 @bottle.get("/")
-def index():
+def index():       
     return bottle.template("index.html")
 
-@bottle.get("/recepti")
-def recepti():
-    return bottle.template("recepti.html")
+def load_images_from_folder(folder):
+        images = []
+        for filename in os.listdir(folder):
+            img = matplotlib.image.imread(os.path.join(folder, filename))
+            if img is not None:
+                images.append(img) 
+        return images 
+   
 
 @bottle.get("/vseckano")
 def vseckano():
