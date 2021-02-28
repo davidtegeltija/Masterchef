@@ -1,20 +1,15 @@
 import bottle
 import os
-import matplotlib
+import json
+from model import *
 
+@bottle.route("/data/<filename>")
+def staticen_server(filename):
+    return bottle.static_file(filename, root= os.path.join(os.getcwd(),'..', "data"))
 
 @bottle.get("/")
 def index():       
     return bottle.template("index.html")
-
-def load_images_from_folder(folder):
-        images = []
-        for filename in os.listdir(folder):
-            img = matplotlib.image.imread(os.path.join(folder, filename))
-            if img is not None:
-                images.append(img) 
-        return images 
-   
 
 @bottle.get("/vseckano")
 def vseckano():
@@ -29,22 +24,22 @@ def dodaj_recept():
     ime = bottle.request.forms.get("Ime")
     priimek = bottle.request.forms.get("Priimek")    
     recept = bottle.request.forms.get("Recept")
-    return "{} + {} = {}".format(ime, priimek, recept)
+    slika = bottle.request.files.get("Slika")
+
+
+    data = read_json()
+    index = len(data) + 1
+    data[index] = {"owner" : [ime, priimek], "recipe" : recept, "image" : save_picture(slika)}
+    write_json(data)
+    return bottle.redirect("/")
+
+
 
 #bottle.request.query se uporablja za GET poizvedbe
 #bottle.request.forms pa se uporablja za POST poizvedbe
 
-@bottle.get("/static/<filename>")
-def staticen_server(filename):
-    return bottle.static_file(filename, root="./slike")
 
-"""@bottle.post("/dodamo_sliko")
-def dodamo_sliko():
-    if file.filename == "":
 
-        return bottle.redirect("index.html")
-        datoteke = dodaj.request.files["slike"]
-        return bottle.template("dodaj.html")"""
 
 
 
@@ -77,5 +72,4 @@ def update():
 #    b = int(bottle.request.forms["b"])
 #    return "{} + {} = {}".format(a, b, a + b)
 
-if __name__ == "__main__":
-    bottle.run(debug=True, reloader=True)
+bottle.run(debug=True, reloader=True)
