@@ -3,13 +3,14 @@ import os
 import json
 from model import *
 
-@bottle.route("/data/<filename>")
+@bottle.route("/static/<filename>")
 def staticen_server(filename):
-    return bottle.static_file(filename, root= os.path.join(os.getcwd(),'..', "data"))
+    return bottle.static_file(filename, root= "./Datoteke")
 
 @bottle.get("/")
-def index():       
-    return bottle.template("index.html")
+def index(): 
+    slike = seznam_slik()      
+    return bottle.template("index.html", seznam_slik = slike)
 
 @bottle.get("/vseckano")
 def vseckano():
@@ -26,11 +27,21 @@ def dodaj_recept():
     recept = bottle.request.forms.get("Recept")
     slika = bottle.request.files.get("Slika")
 
-
     data = read_json()
     index = len(data) + 1
-    data[index] = {"owner" : [ime, priimek], "recipe" : recept, "image" : save_picture(slika)}
-    write_json(data)
+
+    if slika is not None:
+        name, ext = os.path.splitext(slika.filename)
+        if ext not in (".png", ".jpg", ".jpeg"):
+            return bottle.template("error.html")
+        #save_path = "/data/{}".format(f"person_{index}")
+        file_path = "Datoteke/{file}".format(file=slika.filename)
+        slika.save(file_path)
+        data[f"person_{index}"] = {"owner" : [ime, priimek], "recipe" : recept, "image" : file_path}
+        write_json(data)
+    else:
+        data[f"person_{index}"] = {"owner" : [ime, priimek], "recipe" : recept, "image" : None}
+        write_json(data)
     return bottle.redirect("/")
 
 
@@ -65,11 +76,5 @@ def update():
 #    return bottle.template
 # obrazec za iskanje ima GET poizvedbo
 
-
-#@bottle.post("/sestej/")
-#def sestej():
-#    a = int(bottle.request.forms["a"])
-#    b = int(bottle.request.forms["b"])
-#    return "{} + {} = {}".format(a, b, a + b)
 
 bottle.run(debug=True, reloader=True)

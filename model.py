@@ -18,14 +18,17 @@ def write_json(data):
             json.dump(data, json_file, indent=4)
 
 
-def load_images_from_folder(user):    
+def seznam_slik():    
     data = read_json()
     list_of_images = []
-    for i in data:
-        if type(data[i]) == list: # element in json is not picture but list of users
-            continue
-        if data[i]["image"] is not None:
-            list_of_images.append(data[i])
+    for oseba in data:
+        kljuci = data[oseba].keys()
+        for lastnosti in kljuci:
+            if lastnosti == "image":
+                if data[oseba][lastnosti] is not None:
+                    ime_slike = data[oseba][lastnosti].split("/")
+                    list_of_images.append(ime_slike[1])
+    print(list_of_images)
     return list_of_images
 
 """def load_images_from_folder(folder):
@@ -37,11 +40,10 @@ def load_images_from_folder(user):
                 images.append(img) 
         return images """
 
-def save_picture(slika):
-    with io.BytesIO() as output:
-        slika.save(output)
-        contents = output.getvalue()
-        return str(contents)
+def ime_slike(slika):
+    file_path = "Datoteke/{file}".format(file=slika.filename)
+    imeni = file_path.split("/")
+    return imeni[1]
     
 
 def resized_image(image_path):
