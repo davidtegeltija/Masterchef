@@ -1,10 +1,11 @@
 {
     "person_1": {
         "owner": [
-            "ime",
-            "priimek"
+            "David",
+            "Tegeltija"
         ],
-        "recipe": "Tilje",
-        "image": null
+        "title": "Tilje",
+        "recipe": "to usi znamo",
+        "image": "Datoteke/tortilje.jpg"
     }
 }

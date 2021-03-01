@@ -1,14 +1,18 @@
 %rebase("bootstrap.html")
 
+<h3>
+   Tilje
+</h3>
+<p>
+    avtor: {{ime}} {{priimek}}
+</p>
 <br>
 %for i in seznam_slik:
-<img src="/static/{{i}}">
-
+<img src="/static/{{i}}" class="rounded float-end" style="width: 75%; height: auto;">
 %end
 <br>
 <br>
-% a = 13 * 7
-baje je to enako 13*7 = {{a}}
+
 % for i in range(5):
 <li>{{i ** 2}} </li>
 %end

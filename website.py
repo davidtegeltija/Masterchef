@@ -9,8 +9,10 @@ def staticen_server(filename):
 
 @bottle.get("/")
 def index(): 
-    slike = seznam_slik()      
-    return bottle.template("index.html", seznam_slik = slike)
+    slike = seznam_slik() 
+    Ime = imena()
+    Priimek = priimki()
+    return bottle.template("index.html", seznam_slik = slike, ime = Ime, priimek = Priimek)
 
 @bottle.get("/vseckano")
 def vseckano():
@@ -24,6 +26,7 @@ def dodaj():
 def dodaj_recept():
     ime = bottle.request.forms.get("Ime")
     priimek = bottle.request.forms.get("Priimek")    
+    naslov = bottle.request.forms.get("Naslov")
     recept = bottle.request.forms.get("Recept")
     slika = bottle.request.files.get("Slika")
 
@@ -34,13 +37,12 @@ def dodaj_recept():
         name, ext = os.path.splitext(slika.filename)
         if ext not in (".png", ".jpg", ".jpeg"):
             return bottle.template("error.html")
-        #save_path = "/data/{}".format(f"person_{index}")
         file_path = "Datoteke/{file}".format(file=slika.filename)
         slika.save(file_path)
-        data[f"person_{index}"] = {"owner" : [ime, priimek], "recipe" : recept, "image" : file_path}
+        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "recipe" : recept, "image" : file_path}
         write_json(data)
     else:
-        data[f"person_{index}"] = {"owner" : [ime, priimek], "recipe" : recept, "image" : None}
+        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov,  "recipe" : recept, "image" : None}
         write_json(data)
     return bottle.redirect("/")
 
