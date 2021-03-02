@@ -4,7 +4,6 @@ import json
 from PIL import Image
 
 path_to_json = os.path.join(os.getcwd(),"./", "Datoteke", "data.json")
-path_to_images = os.path.join(os.getcwd(),"..", "Datoteke")
 
 def read_json():
     with open(path_to_json, "r", encoding="utf8") as json_file:
@@ -17,37 +16,41 @@ def write_json(data):
             json.dump(data, json_file, indent=4)
 
 
-def seznam_slik():    
+def seznam_podatkov():    
     data = read_json()
-    list_of_images = []
+    seznam_podatkov = []
+    for oseba in data:
+        seznam_za_osebo = []
+        kljuci = data[oseba].keys()
+        for lastnosti in kljuci:
+            if lastnosti == "owner":
+                seznam_za_osebo.append(data[oseba][lastnosti][0])
+                seznam_za_osebo.append(data[oseba][lastnosti][1])
+            if lastnosti == "title":
+                seznam_za_osebo.append(data[oseba][lastnosti])
+            if lastnosti == "recipe":
+                seznam_za_osebo.append(data[oseba][lastnosti])
+            if lastnosti == "image":
+                if "/" in data[oseba][lastnosti]:
+                    ime_slike = data[oseba][lastnosti].split("/")
+                    seznam_za_osebo.append(ime_slike[1])
+                else:
+                    seznam_za_osebo.append(data[oseba][lastnosti])
+
+        seznam_podatkov.append(seznam_za_osebo)
+    return seznam_podatkov
+
+def seznam_slik():
+    data = read_json()
+    slike = []
     for oseba in data:
         kljuci = data[oseba].keys()
         for lastnosti in kljuci:
             if lastnosti == "image":
                 if data[oseba][lastnosti] is not None:
                     ime_slike = data[oseba][lastnosti].split("/")
-                    list_of_images.append(ime_slike[1])
-    return list_of_images
-
-def imena():
-    data = read_json()
-    ime = []
-    for oseba in data:
-        kljuci = data[oseba].keys()
-        for lastnosti in kljuci:
-            if lastnosti == "owner":
-                ime.append(data[oseba][lastnosti][0])
-    return ime
-
-def priimki():
-    data = read_json()
-    priimek = []
-    for oseba in data:
-        kljuci = data[oseba].keys()
-        for lastnosti in kljuci:
-            if lastnosti == "owner":
-                priimek.append(data[oseba][lastnosti][1])
-    return str(priimek)
+                    slike.append(ime_slike[1])  
+    return slike
 
 def resized_image(slika):
     basewidth = 300

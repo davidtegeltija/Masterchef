@@ -5,7 +5,25 @@
             "Tegeltija"
         ],
         "title": "Tilje",
-        "recipe": "to usi znamo",
+        "recipe": "to usi znamo. nare\u017ee\u0161 zelenjavo, jo prepra\u017eis. Meso spe\u010des in to zmesas skupaj z dodatkom salse in paradi\u017enikove mezge",
         "image": "Datoteke/tortilje.jpg"
+    },
+    "person_2": {
+        "owner": [
+            "Vid ",
+            "Verbic"
+        ],
+        "title": "Care",
+        "recipe": "Amm a je res?",
+        "image": "Nobena slika ni bila nalo\u017eena"
+    },
+    "person_3": {
+        "owner": [
+            "Bine",
+            "Flajnik"
+        ],
+        "title": "poj",
+        "recipe": "toj",
+        "image": "Nobena slika ni bila nalo\u017eena"
     }
 }

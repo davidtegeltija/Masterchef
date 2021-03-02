@@ -9,10 +9,13 @@ def staticen_server(filename):
 
 @bottle.get("/")
 def index(): 
-    slike = seznam_slik() 
-    Ime = imena()
-    Priimek = priimki()
-    return bottle.template("index.html", seznam_slik = slike, ime = Ime, priimek = Priimek)
+    podatki = seznam_podatkov()
+    for oseba in podatki:
+        if "." in oseba[4]: #imamo pravo sliko
+            slika = True
+        else:
+            slika = False
+        return bottle.template("index.html", podatki = podatki, slika = slika)
 
 @bottle.get("/vseckano")
 def vseckano():
@@ -34,15 +37,15 @@ def dodaj_recept():
     index = len(data) + 1
 
     if slika is not None:
-        name, ext = os.path.splitext(slika.filename)
+        ext = slika.filename.split(".")[-1]
         if ext not in (".png", ".jpg", ".jpeg"):
             return bottle.template("error.html")
-        file_path = "Datoteke/{file}".format(file=slika.filename)
+        file_path = "Datoteke/{file}".format(file=slika.filename) 
         slika.save(file_path)
         data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "recipe" : recept, "image" : file_path}
         write_json(data)
     else:
-        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov,  "recipe" : recept, "image" : None}
+        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov,  "recipe" : recept, "image" : "Nobena slika ni bila naložena"}
         write_json(data)
     return bottle.redirect("/")
 
@@ -53,25 +56,6 @@ def dodaj_recept():
 
 
 
-
-
-
-"""@post('/update')
-def update():
-    # Form data
-    title = request.forms.get("title")
-    body = request.forms.get("body")
-    image = request.forms.get("image")
-    author = request.forms.get("author")
-    
-    # Image upload
-    file = request.files.get("file")
-    if file:
-        extension = file.filename.split(".")[-1]
-        if extension not in ('png', 'jpg', 'jpeg'):
-            return {"result" : 0, "message": "File Format Error"}
-        save_path = "my/save/path"
-        file.save(save_path)"""
 
 #@bottle.post("/isci/<vneseno>")
 #def isci(vneseno):
