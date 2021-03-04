@@ -3,50 +3,44 @@
 
 
 %for oseba in podatki:
-%if slika:
 <div class="container section">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row" style="margin-top: 7%; margin-bottom: 7%;">
+        <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
             <h3 class="text-center">
                 {{oseba[2]}}
             </h3>
-            <br>
-            <p class="text-start">
-                {{oseba[3]}}
+            <p>Avtor: {{oseba[0]}} {{oseba[1]}}</p>
+            <ul>
+                %for i in oseba[3]:
+                <li>{{i}}</li>
+                %end
+            </ul>
+            <p style="margin-top: 10%; margin-bottom: auto;">
+                {{oseba[4]}}
             </p>
         </div>
-        <div class="col-md-6">
-            <img src="/static/{{oseba[4]}}" style="width: 75%; height: auto;"/>
-        </div>
-    </div>
-    
-</div>
-%else:
-<div class="container section">
-    <div class="row">
-        <div class="col-md-6">
-            <h3 class="text-center">
-                {{oseba[2]}}
-            </h3>
-            <br>
-            <p class="text-start">
-                {{oseba[3]}}
-            </p>
-        </div>
-        <div class="col-md-6">
-            <p>{{oseba[4]}}</p>
-        </div>
+        <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
+            <div style="width: 100%">
+                <img src="/static/{{oseba[5]}}" style="width: 75%; height: auto;"/>
+            </div>
+            <div class="row">
+                <form method="POST" action="/glasuj_za" enctype=multipart/form-data>
+                    <button class="btn btn-primary" type="submit" value="like">Like</button>
+                </form> 
+                <form method="POST" action="/glasuj_proti" enctype=multipart/form-data>
+                    <button class="btn btn-primary" type="submit" value="dislike">Dislike</button>
+                </form> 
+            </div>
+        </div> 
     </div>
 </div>
 %end
 
 
-<br>
-<br>
 
 
 <form action="/sestej/" method="POST"> 
-    a: <input type="text" name="a" placeholder="10">
+    aa: <input type="text" name="a" placeholder="10">
     b: <input type="text", name="b" value="15">
     <input type="submit" value = "a + b">
 </form>
