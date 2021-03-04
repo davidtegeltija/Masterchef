@@ -9,13 +9,8 @@ def staticen_server(filename):
 
 @bottle.get("/")
 def index(): 
-    podatki = seznam_podatkov()
-    for oseba in podatki:
-        if "." in oseba[4]: #imamo pravo sliko
-            slika = True
-        else:
-            slika = False
-        return bottle.template("index.html", podatki = podatki, slika = slika)
+    podatki = seznam_podatkov() 
+    return bottle.template("index.html", podatki = podatki)
 
 @bottle.get("/vseckano")
 def vseckano():
@@ -30,26 +25,38 @@ def dodaj_recept():
     ime = bottle.request.forms.get("Ime")
     priimek = bottle.request.forms.get("Priimek")    
     naslov = bottle.request.forms.get("Naslov")
-    recept = bottle.request.forms.get("Recept")
+    sestavine = bottle.request.forms.get("Sestavine")
+    postopek = bottle.request.forms.get("Postopek")
     slika = bottle.request.files.get("Slika")
 
     data = read_json()
     index = len(data) + 1
 
-    if slika is not None:
-        ext = slika.filename.split(".")[-1]
-        if ext not in (".png", ".jpg", ".jpeg"):
-            return bottle.template("error.html")
-        file_path = "Datoteke/{file}".format(file=slika.filename) 
-        slika.save(file_path)
-        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "recipe" : recept, "image" : file_path}
-        write_json(data)
-    else:
-        data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov,  "recipe" : recept, "image" : "Nobena slika ni bila naložena"}
-        write_json(data)
-    return bottle.redirect("/")
+    if veljaven_recept(ime, priimek, sestavine, postopek):
+        if slika is not None:
+            name, ext = os.path.splitext(slika.filename)
+            if ext not in (".png", ".jpg", ".jpeg"):
+                return bottle.template("napacna_datoteka.html")
+            file_path = "Datoteke/{file}".format(file=slika.filename) 
+            slika.save(file_path)
+            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path}
+            write_json(data)
+        else:
+            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Datoteke/noImage.png"}
+            write_json(data)
+        return bottle.redirect("/")
+    return bottle.template("ni_veljaven_recept.html")
 
-
+@bottle.post("/glasuj_za")
+def glasuj():
+    return "like"
+"""    return bottle.redirect("/")
+"""
+@bottle.post("/glasuj_proti")
+def glasuj():
+    return "dislika"
+"""    return bottle.redirect("/")
+"""
 
 #bottle.request.query se uporablja za GET poizvedbe
 #bottle.request.forms pa se uporablja za POST poizvedbe
