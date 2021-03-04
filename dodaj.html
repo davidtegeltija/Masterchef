@@ -8,6 +8,7 @@
 
 <form method="POST" action="/dodaj_recept" enctype=multipart/form-data>
   <div class="container">
+    <b>Vaša ime in priimek</b>
       <div class="col col-lg-2">
         <input type="text" class="form-control" placeholder="Ime" name="Ime">
       </div>
@@ -15,16 +16,23 @@
         <input type="text" class="form-control" placeholder="Priimek" name="Priimek">
       </div>
     <br>  
-    <label for="text"> <b>Kako se imenuje vaša hrana?</b></label>
+    <b>Kako se imenuje vaša hrana?</b>
       <div class="col col-lg-2">
         <input type="text" class="form-control" placeholder="Naslov recepta" name="Naslov">
       </div> 
     <br>   
       <div class="row">
-        <div class="col">
-          <label for="text"> <b>Sem napišite svoj recept</b></label>
-          <textarea id="text" class="form-control" name="Recept" rows="7" cols="48"></textarea>
+        <b>Sem napišite svoj recept</b>
+        <ul>
+        <div class="col">      
+          <br>
+          <li> <b>Sestavine</b></li>
+          <textarea id="text" class="form-control" name="Sestavine" rows="5" cols="48" placeholder="Vsako sestavino in njeno količino napišite v svojo vrstico in pred njo postavite -. &#10 Primer: &#10 -1kg krompirja &#10 -500g piščanca"></textarea>
+          <br>
+          <li><b>Postopek</b></li>
+          <textarea id="text" class="form-control" name="Postopek" rows="7" cols="48"></textarea>
         </div>
+        </ul>
       </div>
   
     <div class="input-group">
