@@ -2,7 +2,7 @@
 
 
 
-%for oseba in podatki:
+%for oseba in podatki[::-1]:
 <div class="container section">
     <div class="row" style="margin-top: 7%; margin-bottom: 7%;">
         <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
@@ -21,14 +21,16 @@
         </div>
         <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
             <div style="width: 100%">
-                <img src="/static/{{oseba[5]}}" style="width: 75%; height: auto;"/>
+                <img src="/static/{{oseba[5]}}" style="width: 100%; height: auto;"/>
             </div>
-            <div class="row">
+            <div style="padding-top: 5%; padding-right: 5%; padding-bottom: 5%;">
                 <form method="POST" action="/glasuj_za" enctype=multipart/form-data>
-                    <button class="btn btn-primary" type="submit" value="like">Like</button>
+                    <button class="btn btn-primary" type="submit" name="ja" value="{{oseba[5]}}" enctype="multipart/form-data">Like</button>
+                    {{oseba[6]}}
                 </form> 
                 <form method="POST" action="/glasuj_proti" enctype=multipart/form-data>
-                    <button class="btn btn-primary" type="submit" value="dislike">Dislike</button>
+                    <button class="btn btn-primary" type="submit" name="ne" value="{{oseba[5]}}">Dislike</button>
+                    {{oseba[7]}}
                 </form> 
             </div>
         </div> 

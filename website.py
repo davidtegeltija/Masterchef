@@ -5,7 +5,8 @@ from model import *
 
 @bottle.route("/static/<filename>")
 def staticen_server(filename):
-    return bottle.static_file(filename, root= "./Datoteke")
+    return bottle.static_file(filename, root= "./Database")
+
 
 @bottle.get("/")
 def index(): 
@@ -19,6 +20,20 @@ def vseckano():
 @bottle.get("/dodaj")
 def dodaj():
     return bottle.template("dodaj.html")
+
+@bottle.get("/prijava")
+def vseckano():
+    return bottle.template("prijava.html")
+
+@bottle.post("/logiraj_me")
+def moj_profil():
+    uporabnisko_ime = bottle.request.forms.get("Uporabnisko_ime")
+    geslo = bottle.request.forms.get("Geslo") 
+    return bottle.template("dodaj.html")
+
+@bottle.get("/nov_profil")
+def nov_profil():
+    return bottle.template("registracija.html")
 
 @bottle.post("/dodaj_recept")
 def dodaj_recept():
@@ -37,26 +52,32 @@ def dodaj_recept():
             name, ext = os.path.splitext(slika.filename)
             if ext not in (".png", ".jpg", ".jpeg"):
                 return bottle.template("napacna_datoteka.html")
-            file_path = "Datoteke/{file}".format(file=slika.filename) 
+            file_path = "Database/{file}".format(file=slika.filename) 
             slika.save(file_path)
-            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path}
+            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path, "likes" : 0, "dislikes" : 0}
             write_json(data)
         else:
-            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Datoteke/noImage.png"}
+            data[f"person_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Database/noImage.png", "likes" : 0, "dislikes" : 0}
             write_json(data)
         return bottle.redirect("/")
     return bottle.template("ni_veljaven_recept.html")
 
 @bottle.post("/glasuj_za")
-def glasuj():
-    return "like"
-"""    return bottle.redirect("/")
-"""
+def Glasuj_za():
+    seznam = seznam_slik()
+    for slika in seznam:
+        if bottle.request.POST.get("ja") == slika:
+            glasuj_za(slika)
+    return bottle.redirect("/")
+                    
+
 @bottle.post("/glasuj_proti")
-def glasuj():
-    return "dislika"
-"""    return bottle.redirect("/")
-"""
+def Glasuj_proti():
+    seznam = seznam_slik()
+    for slika in seznam:
+        if bottle.request.POST.get("ne") == slika:
+            glasuj_proti(slika)
+    return bottle.redirect("/")
 
 #bottle.request.query se uporablja za GET poizvedbe
 #bottle.request.forms pa se uporablja za POST poizvedbe
