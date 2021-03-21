@@ -23,26 +23,24 @@
             <div style="width: 100%">
                 <img src="/static/{{oseba[5]}}" style="width: 100%; height: auto;"/>
             </div>
-            <div style="padding-top: 5%; padding-right: 5%; padding-bottom: 5%;">
-                <form method="POST" action="/glasuj_za" enctype=multipart/form-data>
-                    <button class="btn btn-primary" type="submit" name="ja" value="{{oseba[5]}}" enctype="multipart/form-data">Like</button>
-                    {{oseba[6]}}
-                </form> 
-                <form method="POST" action="/glasuj_proti" enctype=multipart/form-data>
-                    <button class="btn btn-primary" type="submit" name="ne" value="{{oseba[5]}}">Dislike</button>
-                    {{oseba[7]}}
-                </form> 
+            <div style="padding-top: 5%; padding-bottom: 5%;">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <form method="POST" action="/glasuj_za" enctype=multipart/form-data>
+                            <button class="btn btn-primary" type="submit" name="ja" value="{{oseba[5]}}" enctype="multipart/form-data">Všeč mi je</button>
+                            {{oseba[6]}} 
+                        </form> 
+                    </li>
+                    <li class="list-group-item">
+                        <form method="POST" action="/glasuj_proti" enctype=multipart/form-data>
+                            <button class="btn btn-primary" type="submit" name="ne" value="{{oseba[5]}}">Ni mi všeč</button>
+                            {{oseba[7]}} 
+                        </form>
+                    </li>  
+                </ul>
             </div>
         </div> 
     </div>
 </div>
 %end
 
-
-
-
-<form action="/sestej/" method="POST"> 
-    aa: <input type="text" name="a" placeholder="10">
-    b: <input type="text", name="b" value="15">
-    <input type="submit" value = "a + b">
-</form>
