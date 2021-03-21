@@ -1,5 +1,15 @@
 %rebase("bootstrap.html")
 
-<h1> 
-    Če želite videti recepte, ki ste jih všečkali se <a href="/prijava" >prijavite.</a>
-</h1>
+%if uporabnik != "Gost":
+% for slikca in vseckane_slike:
+    <div style="width: 100%">
+        <img src="/static/{{slikca}" style="width: 100%; height: auto;"/>
+    </div>        
+%else:
+    <h1> 
+        Če želite videti recepte, ki ste jih všečkali se <a href="/prijava" >prijavite.</a>
+    </h1>
+%end
+
+
+

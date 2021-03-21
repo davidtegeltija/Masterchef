@@ -103,11 +103,28 @@ def preveri_prijavo(ime, geslo):
                 return True
     return False
 
+def zahtevaj_prijavo():
+    if bottle.request.get_cookie("uporabnik"):
+        return True
+    return False
 
-def resized_image(slika):
-    basewidth = 300
-    img = Image.open(slika)
-    wpercent = (basewidth / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((basewidth, hsize), Image.ANTIALIAS)
-    img.save(slika)
+def vsec_mi_je_slika(slika, uporabnisko_ime):
+    data = read_json()
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
+            moje_slike = vseckane_slike(uporabnisko_ime)
+            moje_slike.append(str(slika))
+            data["uporabniki"][uporabnik]["liked_photos"] = moje_slike
+    write_json(data)
+
+def vseckane_slike(uporabnisko_ime):
+    data = read_json()
+    vseckane = []
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
+            if len(data["uporabniki"][uporabnik]["liked_photos"]) != 0:
+                for slika in data["uporabniki"][uporabnik]["liked_photos"]:
+                    vseckane.append(slika)
+            else:
+                return []
+    return vseckane
