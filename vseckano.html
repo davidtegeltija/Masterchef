@@ -1,10 +1,31 @@
 %rebase("bootstrap.html")
 
 %if uporabnik != "Gost":
-% for slikca in vseckane_slike:
-    <div style="width: 100%">
-        <img src="/static/{{slikca}" style="width: 100%; height: auto;"/>
-    </div>        
+    %for recept in vseckani_recepti:
+    <div class="container section">
+        <div class="row" style="margin-top: 7%; margin-bottom: 7%;">
+            <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
+                <h3 class="text-center">
+                    {{recept[2]}}
+                </h3>
+                <p>Avtor: {{recept[0]}} {{recept[1]}}</p>
+                <ul>
+                    %for i in recept[3]:
+                    <li>{{i}}</li>
+                    %end
+                </ul>
+                <p style="margin-top: 10%; margin-bottom: auto;">
+                    {{recept[4]}}
+                </p>
+            </div>
+            <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
+                <div style="width: 100%">
+                    <img src="/static/{{recept[5]}}" style="width: 100%; height: auto;"/>
+                </div>                
+            </div> 
+        </div>
+    </div>
+    %end     
 %else:
     <h1> 
         Če želite videti recepte, ki ste jih všečkali se <a href="/prijava" >prijavite.</a>

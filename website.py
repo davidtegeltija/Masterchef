@@ -44,7 +44,8 @@ def Glasuj_proti():
 def vseckano():
     if zahtevaj_prijavo():
         vseckane_fotografije = vseckane_slike(bottle.request.get_cookie("uporabnik"))
-        return bottle.template("vseckano.html", uporabnik = bottle.request.get_cookie("uporabnik"), vseckane_slike = vseckane_fotografije)
+        moji_recepti = vseckani_recepti(bottle.request.get_cookie("uporabnik"))
+        return bottle.template("vseckano.html", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti)
     return bottle.template("neveljavna_prijava.html", sporocilo = "Če želite videti recepte, ki ste jih všečkali se prijavite.", uporabnik = "Gost")
 
 @bottle.get("/dodaj")

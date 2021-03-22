@@ -128,3 +128,15 @@ def vseckane_slike(uporabnisko_ime):
             else:
                 return []
     return vseckane
+
+def vseckani_recepti(uporabnisko_ime):
+    data = read_json()
+    vseckani = []
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
+            for slika in vseckane_slike(uporabnisko_ime):
+                print(seznam_podatkov())
+                for recept in seznam_podatkov():
+                    if slika == recept[5]:
+                        vseckani.append(recept[:6])
+    return vseckani
