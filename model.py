@@ -135,7 +135,6 @@ def vseckani_recepti(uporabnisko_ime):
     for uporabnik in data["uporabniki"]:
         if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
             for slika in vseckane_slike(uporabnisko_ime):
-                print(seznam_podatkov())
                 for recept in seznam_podatkov():
                     if slika == recept[5]:
                         vseckani.append(recept[:6])
