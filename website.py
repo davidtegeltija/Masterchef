@@ -89,7 +89,7 @@ def dodaj_recept():
 @bottle.get("/prijava")
 def prijava():
     if zahtevaj_prijavo():
-        return bottle.template("prijava.html", uporabnik = bottle.request.get_cookie("uporabnik"))
+        return bottle.template("sprememba_gesla.html", uporabnik = bottle.request.get_cookie("uporabnik"))
     return bottle.template("prijava.html", uporabnik = "Gost")
 
 @bottle.get("/odjava")
@@ -130,6 +130,24 @@ def logiraj_me():
     else:
         return bottle.template("neveljavna_prijava.html", sporocilo = "Uporabniško ime in geslo nemoreta biti prazna", uporabnik = "Gost")
 
+@bottle.get("/spremenite_geslo")
+def sprememba_gesla():
+    return bottle.template("sprememba_gesla.html", uporabnik = bottle.request.get_cookie("uporabnik"))
+
+@bottle.post("/spremenite_geslo")
+def sprememba_gesla():
+    staro_geslo = bottle.request.forms.get("Staro_geslo")
+    novo_geslo = bottle.request.forms.get("Novo_geslo")
+    ime = bottle.request.get_cookie("uporabnik")
+    if preveri_prijavo(ime, staro_geslo):
+        data = read_json()
+        for uporabnik in data["uporabniki"]:
+            if data["uporabniki"][uporabnik]["password"] == staro_geslo:
+                data["uporabniki"][uporabnik]["password"] = novo_geslo
+        write_json(data)
+        return bottle.redirect("/")
+    else:
+        return bottle.template("neveljavna_prijava.html", sporocilo = "Staro geslo ni pravilno", uporabnik = bottle.request.get_cookie("uporabnik"))
 
 
 #bottle.request.query se uporablja za GET poizvedbe
