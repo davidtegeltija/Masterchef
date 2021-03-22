@@ -60,6 +60,14 @@ def seznam_slik():
                     slike.append(ime_slike[1])  
     return slike
 
+def seznam_receptov():
+    data = read_json()
+    recepti = []
+    for oseba in data["recepti"]:
+        ime_recepta = data["recepti"][oseba]["title"]
+        recepti.append(ime_recepta)
+    return recepti
+
 def veljaven_recept(ime, priimek, sestavine, postopek):
     if len(ime) or len(priimek) != 0:
         if len(sestavine) != 0:
@@ -67,17 +75,17 @@ def veljaven_recept(ime, priimek, sestavine, postopek):
                 return True
     return False
         
-def glasuj_za(slika):
+def glasuj_za(recept):
     data = read_json()
     for oseba in data["recepti"]:
-        if data["recepti"][oseba]["image"].split("/")[1] == slika:
+        if data["recepti"][oseba]["title"] == recept:
             data["recepti"][oseba]["likes"] += 1
     write_json(data)
 
-def glasuj_proti(slika):
+def glasuj_proti(recept):
     data = read_json()
     for oseba in data["recepti"]:
-        if data["recepti"][oseba]["image"].split("/")[1] == slika:
+        if data["recepti"][oseba]["title"] == recept:
             data["recepti"][oseba]["dislikes"] += 1
     write_json(data)
 
@@ -108,34 +116,39 @@ def zahtevaj_prijavo():
         return True
     return False
 
-def vsec_mi_je_slika(slika, uporabnisko_ime):
+def vsec_mi_je_recept(recept, uporabnisko_ime):
     data = read_json()
     for uporabnik in data["uporabniki"]:
         if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
-            moje_slike = vseckane_slike(uporabnisko_ime)
-            moje_slike.append(str(slika))
-            data["uporabniki"][uporabnik]["liked_photos"] = moje_slike
+            moji_recepti = vseckani_naslovi_receptov(uporabnisko_ime)
+            if recept in moji_recepti:
+                pass
+            else:   
+                moji_recepti.append(str(recept))
+                data["uporabniki"][uporabnik]["liked_recipe"] = moji_recepti
     write_json(data)
 
-def vseckane_slike(uporabnisko_ime):
+def vseckani_naslovi_receptov(uporabnisko_ime):
     data = read_json()
-    vseckane = []
+    vseckani = []
     for uporabnik in data["uporabniki"]:
         if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
-            if len(data["uporabniki"][uporabnik]["liked_photos"]) != 0:
-                for slika in data["uporabniki"][uporabnik]["liked_photos"]:
-                    vseckane.append(slika)
+            if len(data["uporabniki"][uporabnik]["liked_recipe"]) != 0:
+                for recept in data["uporabniki"][uporabnik]["liked_recipe"]:
+                    vseckani.append(recept)
             else:
                 return []
-    return vseckane
+    return vseckani
 
 def vseckani_recepti(uporabnisko_ime):
     data = read_json()
     vseckani = []
     for uporabnik in data["uporabniki"]:
         if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
-            for slika in vseckane_slike(uporabnisko_ime):
+            for naslov in vseckani_naslovi_receptov(uporabnisko_ime):
                 for recept in seznam_podatkov():
-                    if slika == recept[5]:
+                    if naslov == recept[2]:
                         vseckani.append(recept[:6])
     return vseckani
+
+

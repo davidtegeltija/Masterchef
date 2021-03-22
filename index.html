@@ -27,13 +27,13 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <form method="POST" action="/glasuj_za" enctype=multipart/form-data>
-                            <button class="btn btn-primary" type="submit" name="ja" value="{{oseba[5]}}" enctype="multipart/form-data">Všeč mi je</button>
+                            <button class="btn btn-primary" type="submit" name="ja" value="{{oseba[2]}}" enctype="multipart/form-data">Všeč mi je</button>
                             {{oseba[6]}} 
                         </form> 
                     </li>
                     <li class="list-group-item">
                         <form method="POST" action="/glasuj_proti" enctype=multipart/form-data>
-                            <button class="btn btn-primary" type="submit" name="ne" value="{{oseba[5]}}">Ni mi všeč</button>
+                            <button class="btn btn-primary" type="submit" name="ne" value="{{oseba[2]}}">Ni mi všeč</button>
                             {{oseba[7]}} 
                         </form>
                     </li>  

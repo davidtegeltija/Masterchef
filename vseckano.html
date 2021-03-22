@@ -21,6 +21,13 @@
             <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
                 <div style="width: 100%">
                     <img src="/static/{{recept[5]}}" style="width: 100%; height: auto;"/>
+                </div>
+                <div style="padding-top: 5%; padding-bottom: 5%;">
+                    <div class="text-center">
+                        <form method="POST" action="/odstrani" enctype=multipart/form-data>
+                            <button class="btn btn-primary" type="submit" name="odstrani" value="{{recept[2]}}" enctype="multipart/form-data">Odstrani ta recept</button>  
+                        </form> 
+                    </div>                   
                 </div>                
             </div> 
         </div>
