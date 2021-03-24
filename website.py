@@ -12,8 +12,8 @@ def staticen_server(filename):
 def index(): 
     podatki = seznam_podatkov() 
     if zahtevaj_prijavo():
-        return bottle.template("index.html", podatki = podatki, uporabnik = bottle.request.get_cookie("uporabnik"))
-    return bottle.template("index.html", podatki = podatki, uporabnik = "Gost")
+        return bottle.template("index.tpl", podatki = podatki, uporabnik = bottle.request.get_cookie("uporabnik"))
+    return bottle.template("index.tpl", podatki = podatki, uporabnik = "Gost")
 
 @bottle.post("/glasuj_za")
 def Glasuj_za():
@@ -25,7 +25,7 @@ def Glasuj_za():
                 vsec_mi_je_recept(recept, bottle.request.get_cookie("uporabnik"))
         return bottle.redirect("/")
     else:
-        return bottle.template("neveljavna_prijava.html", sporocilo = "Za všečkanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
+        return bottle.template("neveljavna_prijava.tpl", sporocilo = "Za všečkanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
                     
 
 @bottle.post("/glasuj_proti")
@@ -37,7 +37,7 @@ def Glasuj_proti():
                 glasuj_proti(recept)
         return bottle.redirect("/")
     else:
-        return bottle.template("neveljavna_prijava.html", sporocilo = "Za ne všečkanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
+        return bottle.template("neveljavna_prijava.tpl", sporocilo = "Za ne všečkanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
 
 
 @bottle.get("/vseckano")
@@ -45,8 +45,8 @@ def vseckano():
     if zahtevaj_prijavo():
         vseckani_naslovi = vseckani_naslovi_receptov(bottle.request.get_cookie("uporabnik"))
         moji_recepti = vseckani_recepti(bottle.request.get_cookie("uporabnik"))
-        return bottle.template("vseckano.html", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti, vseckane_slike = vseckani_naslovi)
-    return bottle.template("neveljavna_prijava.html", sporocilo = "Če želite videti recepte, ki ste jih všečkali se prijavite.", uporabnik = "Gost")
+        return bottle.template("vseckano.tpl", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti, vseckane_slike = vseckani_naslovi)
+    return bottle.template("neveljavna_prijava.tpl", sporocilo = "Če želite videti recepte, ki ste jih všečkali se prijavite.", uporabnik = "Gost")
 
 @bottle.post("/odstrani")
 def odstrani():
@@ -62,15 +62,15 @@ def odstrani():
                     data["uporabniki"][oseba]["liked_recipe"] = vseckani_naslovi
                 write_json(data)
     
-    return bottle.template("vseckano.html", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti, vseckane_slike = vseckani_naslovi) 
+    return bottle.template("vseckano.tpl", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti, vseckane_slike = vseckani_naslovi) 
 
 
 
 @bottle.get("/dodaj")
 def dodaj():
     if zahtevaj_prijavo():
-        return bottle.template("dodaj.html", uporabnik = bottle.request.get_cookie("uporabnik"))
-    return bottle.template("dodaj.html", uporabnik = "Gost")
+        return bottle.template("dodaj.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
+    return bottle.template("dodaj.tpl", uporabnik = "Gost")
 
 @bottle.post("/dodaj_recept")
 def dodaj_recept():
@@ -89,7 +89,7 @@ def dodaj_recept():
             if slika is not None:
                 name, ext = os.path.splitext(slika.filename)
                 if ext not in (".png", ".jpg", ".jpeg"):
-                    return bottle.template("napacna_datoteka.html", uporabnik = bottle.request.get_cookie("uporabnik"))
+                    return bottle.template("napacna_datoteka.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
                 file_path = "Database/{file}".format(file=slika.filename) 
                 slika.save(file_path)
                 data["recepti"][f"recept_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path, "likes" : 0, "dislikes" : 0}
@@ -98,17 +98,17 @@ def dodaj_recept():
                 data["recepti"][f"recept_{index}"] = {"owner" : [ime, priimek], "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Database/noImage.png", "likes" : 0, "dislikes" : 0}
                 write_json(data)
             return bottle.redirect("/")
-        return bottle.template("ni_veljaven_recept.html", uporabnik = bottle.request.get_cookie("uporabnik"))
+        return bottle.template("ni_veljaven_recept.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
     else:
-        return bottle.template("neveljavna_prijava.html", sporocilo = "Za dodajanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
+        return bottle.template("neveljavna_prijava.tpl", sporocilo = "Za dodajanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
 
 
 
 @bottle.get("/prijava")
 def prijava():
     if zahtevaj_prijavo():
-        return bottle.template("sprememba_gesla.html", uporabnik = bottle.request.get_cookie("uporabnik"))
-    return bottle.template("prijava.html", uporabnik = "Gost")
+        return bottle.template("sprememba_gesla.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
+    return bottle.template("prijava.tpl", uporabnik = "Gost")
 
 @bottle.get("/odjava")
 def odjava():
@@ -118,8 +118,8 @@ def odjava():
 @bottle.get("/nov_profil")
 def nov_profil():
     if zahtevaj_prijavo():
-        return bottle.template("registracija.html", uporabnik = bottle.request.get_cookie("uporabnik"))
-    return bottle.template("registracija.html", uporabnik = "Gost")
+        return bottle.template("registracija.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
+    return bottle.template("registracija.tpl", uporabnik = "Gost")
 
 @bottle.post("/logiraj_me")
 def logiraj_me():
@@ -133,7 +133,7 @@ def logiraj_me():
             bottle.response.set_cookie("uporabnik", uporabnisko_ime)
             return bottle.redirect('/')
         else:
-            return bottle.template("neveljavna_prijava.html", sporocilo = "Vaše uporabniško ime ali geslo je napačno", uporabnik = "Gost")
+            return bottle.template("neveljavna_prijava.tpl", sporocilo = "Vaše uporabniško ime ali geslo je napačno", uporabnik = "Gost")
     
     if bottle.request.forms.get("Novo_uporabnisko_ime") and bottle.request.forms.get("Novo_geslo"):  
         nov_uporabnik = bottle.request.forms.get("Novo_uporabnisko_ime")
@@ -146,13 +146,13 @@ def logiraj_me():
             write_json(data)
             return bottle.redirect('/')
         else:
-            return bottle.template("neveljavna_prijava.html", sporocilo = "Uporabniško ime je že zasedeno")
+            return bottle.template("neveljavna_prijava.tpl", sporocilo = "Uporabniško ime je že zasedeno")
     else:
-        return bottle.template("neveljavna_prijava.html", sporocilo = "Uporabniško ime in geslo nemoreta biti prazna", uporabnik = "Gost")
+        return bottle.template("neveljavna_prijava.tpl", sporocilo = "Uporabniško ime in geslo nemoreta biti prazna", uporabnik = "Gost")
 
 @bottle.get("/spremenite_geslo")
 def sprememba_gesla():
-    return bottle.template("sprememba_gesla.html", uporabnik = bottle.request.get_cookie("uporabnik"))
+    return bottle.template("sprememba_gesla.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
 
 @bottle.post("/spremenite_geslo")
 def sprememba_gesla():
@@ -167,7 +167,7 @@ def sprememba_gesla():
         write_json(data)
         return bottle.redirect("/")
     else:
-        return bottle.template("neveljavna_prijava.html", sporocilo = "Staro geslo ni pravilno", uporabnik = bottle.request.get_cookie("uporabnik"))
+        return bottle.template("neveljavna_prijava.tpl", sporocilo = "Staro geslo ni pravilno", uporabnik = bottle.request.get_cookie("uporabnik"))
 
 
 #bottle.request.query se uporablja za GET poizvedbe

@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <h3>Pozdravljeni na spletni strani Masteršef.</h3>
 <p>

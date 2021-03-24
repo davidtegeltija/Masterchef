@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 
 

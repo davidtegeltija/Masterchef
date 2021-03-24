@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <h1>Vaš recept ni veljaven</h1>
 <p>

@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <form method="POST" action="/logiraj_me" enctype=multipart/form-data>
     <div class="container">

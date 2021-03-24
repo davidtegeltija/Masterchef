@@ -3,22 +3,27 @@
         "person_1": {
             "username": "user",
             "password": "pass",
-            "liked_photos": [
-                "cat.jpg"
-            ]
+            "liked_recipe": []
         },
         "person_2": {
             "username": "davi",
-            "password": "tegeo",
-            "liked_photos": [
-                "cat.jpg",
-                "tortilje.jpg"
+            "password": "bineopica",
+            "liked_recipe": [
+                "Tilje"
             ]
         },
         "person_3": {
             "username": "bla",
             "password": "blabla",
-            "liked_photos": []
+            "liked_recipe": []
+        },
+        "person_4": {
+            "username": "darkofekonja",
+            "password": "bonsaisozakon",
+            "liked_recipe": [
+                "Tilje",
+                "domaci viski"
+            ]
         }
     },
     "recepti": {
@@ -31,7 +36,7 @@
             "ingredients": "-piscancek\r\n-paprika\r\n-cebula",
             "procedure": "to usi znamo. nare\u017ee\u0161 zelenjavo, jo prepra\u017eis. Meso spe\u010des in to zmesas skupaj z dodatkom salse in paradi\u017enikove mezge",
             "image": "Database/tortilje.jpg",
-            "likes": 7,
+            "likes": 4,
             "dislikes": 1
         },
         "recept_2": {
@@ -43,8 +48,32 @@
             "ingredients": "jej",
             "procedure": "sprejeta bom",
             "image": "Database/cat.jpg",
-            "likes": 9,
-            "dislikes": 3
+            "likes": 3,
+            "dislikes": 1
+        },
+        "recept_3": {
+            "owner": [
+                "darki",
+                "feki"
+            ],
+            "title": "domaci viski",
+            "ingredients": "8z7t6rtuho",
+            "procedure": "fzhkhkhgk",
+            "image": "Database/noImage.png",
+            "likes": 6,
+            "dislikes": 0
+        },
+        "recept_4": {
+            "owner": [
+                "fse",
+                "rhd"
+            ],
+            "title": "hsh",
+            "ingredients": "-tu\r\n-twe\r\n-ge",
+            "procedure": "upam da bo delal",
+            "image": "Database/noImage.png",
+            "likes": 3,
+            "dislikes": 1
         }
     }
 }

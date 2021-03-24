@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <h3> Tukaj lahko dodate svoj recept in ga delite z drugimi obiskovalci te spletne strani </h3>
 <p>

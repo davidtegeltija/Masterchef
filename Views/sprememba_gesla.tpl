@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <h3 class="text-center">Spremenite geslo svojega Mastešef profila</h3>
 <br>

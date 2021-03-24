@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 %if len(vseckane_slike) != 0:
     %for recept in vseckani_recepti:

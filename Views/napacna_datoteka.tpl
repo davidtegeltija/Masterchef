@@ -1,4 +1,4 @@
-%rebase("bootstrap.html")
+%rebase("bootstrap.tpl")
 
 <h1>Izbrana datoteka ni prave vrste. Prosimo izberite samo slike formata:</h1>
 <ul>
