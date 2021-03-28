@@ -24,8 +24,7 @@ def seznam_podatkov():
         kljuci = data["recepti"][oseba].keys()
         for lastnosti in kljuci:
             if lastnosti == "owner":
-                seznam_za_osebo.append(data["recepti"][oseba][lastnosti][0])
-                seznam_za_osebo.append(data["recepti"][oseba][lastnosti][1])
+                seznam_za_osebo.append(data["recepti"][oseba][lastnosti])
             if lastnosti == "title":
                 seznam_za_osebo.append(data["recepti"][oseba][lastnosti])
             if lastnosti == "ingredients":  
@@ -128,6 +127,18 @@ def vsec_mi_je_recept(recept, uporabnisko_ime):
                 data["uporabniki"][uporabnik]["liked_recipe"] = moji_recepti
     write_json(data)
 
+def ni_mi_vsec_recept(recept, uporabnisko_ime):
+    data = read_json()
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
+            moji_recepti = nevseckani_naslovi_receptov(uporabnisko_ime)
+            if recept in moji_recepti:
+                pass
+            else:   
+                moji_recepti.append(str(recept))
+                data["uporabniki"][uporabnik]["disliked_recipe"] = moji_recepti
+    write_json(data)
+
 def vseckani_naslovi_receptov(uporabnisko_ime):
     data = read_json()
     vseckani = []
@@ -140,6 +151,18 @@ def vseckani_naslovi_receptov(uporabnisko_ime):
                 return []
     return vseckani
 
+def nevseckani_naslovi_receptov(uporabnisko_ime):
+    data = read_json()
+    vseckani = []
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
+            if len(data["uporabniki"][uporabnik]["disliked_recipe"]) != 0:
+                for recept in data["uporabniki"][uporabnik]["disliked_recipe"]:
+                    vseckani.append(recept)
+            else:
+                return []
+    return vseckani
+
 def vseckani_recepti(uporabnisko_ime):
     data = read_json()
     vseckani = []
@@ -147,8 +170,13 @@ def vseckani_recepti(uporabnisko_ime):
         if data["uporabniki"][uporabnik]["username"] == uporabnisko_ime:
             for naslov in vseckani_naslovi_receptov(uporabnisko_ime):
                 for recept in seznam_podatkov():
-                    if naslov == recept[2]:
-                        vseckani.append(recept[:6])
+                    if naslov == recept[1]:
+                        vseckani.append(recept[:5])
     return vseckani
 
-
+def moji_recepti(uporabnisko_ime):
+    moji = []
+    for recept in seznam_podatkov():
+        if recept[0] == uporabnisko_ime:
+            moji.append(recept)
+    return moji
