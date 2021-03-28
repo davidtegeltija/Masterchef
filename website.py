@@ -12,7 +12,12 @@ def staticen_server(filename):
 def index(): 
     podatki = seznam_podatkov() 
     if zahtevaj_prijavo():
-        return bottle.template("index.tpl", podatki = podatki, uporabnik = bottle.request.get_cookie("uporabnik"))
+        data = read_json()
+        for oseba in data["uporabniki"]:
+            if data["uporabniki"][oseba]["username"] == bottle.request.get_cookie("uporabnik"):
+                vsec_mi_je = data["uporabniki"][oseba]["liked_recipe"]
+                ni_mi_vsec = data["uporabniki"][oseba]["disliked_recipe"]                
+        return bottle.template("index.tpl", podatki = podatki, vseckani_recepti = vsec_mi_je, nevseckani_recepti = ni_mi_vsec, uporabnik = bottle.request.get_cookie("uporabnik"))
     return bottle.template("index.tpl", podatki = podatki, uporabnik = "Gost")
 
 @bottle.post("/glasuj_za")
@@ -22,7 +27,7 @@ def Glasuj_za():
         for recept in seznam:
             if bottle.request.POST.get("ja") == recept:
                 glasuj_za(recept)
-                vsec_mi_je_recept(recept, bottle.request.get_cookie("uporabnik"))
+                vsec_mi_je_recept(recept, bottle.request.get_cookie("uporabnik"))           
         return bottle.redirect("/")
     else:
         return bottle.template("neveljavna_prijava.tpl", sporocilo = "Za všečkanje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
@@ -61,8 +66,7 @@ def odstrani():
             for oseba in data["uporabniki"]:
                 if data["uporabniki"][oseba]["username"] == bottle.request.get_cookie("uporabnik"):
                     data["uporabniki"][oseba]["liked_recipe"] = vseckani_naslovi
-                write_json(data)
-    
+                write_json(data)    
     return bottle.template("vseckano.tpl", uporabnik = bottle.request.get_cookie("uporabnik"), vseckani_recepti = moji_recepti, vseckane_slike = vseckani_naslovi) 
 
 
