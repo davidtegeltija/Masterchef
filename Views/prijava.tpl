@@ -10,7 +10,7 @@
                         <input type="text" class="form-control" placeholder="Uporabniško ime" name="Uporabnisko_ime">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Geslo" name="Geslo">
+                        <input type="password" class="form-control" placeholder="Geslo" name="Geslo">
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit" value="login">Logiraj me</button>

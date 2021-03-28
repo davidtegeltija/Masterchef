@@ -15,7 +15,7 @@
                         <input type="text" class="form-control" placeholder="Uporabniško ime" name="Novo_uporabnisko_ime">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Geslo" name="Novo_geslo">
+                        <input type="password" class="form-control" placeholder="Geslo" name="Novo_geslo">
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit" value="login">Ustvari profil</button>

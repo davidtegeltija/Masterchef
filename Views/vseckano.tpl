@@ -6,26 +6,26 @@
         <div class="row" style="margin-top: 7%; margin-bottom: 7%;">
             <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
                 <h3 class="text-center">
-                    {{recept[2]}}
+                    {{recept[1]}}
                 </h3>
-                <p>Avtor: {{recept[0]}} {{recept[1]}}</p>
+                <p><b>Avtor: {{recept[0]}}</b></p>
                 <ul>
-                    %for i in recept[3]:
+                    %for i in recept[2]:
                     <li>{{i}}</li>
                     %end
                 </ul>
                 <p style="margin-top: 10%; margin-bottom: auto;">
-                    {{recept[4]}}
+                    {{recept[3]}}
                 </p>
             </div>
             <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">
                 <div style="width: 100%">
-                    <img src="/static/{{recept[5]}}" style="width: 100%; height: auto;"/>
+                    <img src="/static/{{recept[4]}}" style="width: 100%; height: auto;"/>
                 </div>
                 <div style="padding-top: 5%; padding-bottom: 5%;">
                     <div class="text-center">
                         <form method="POST" action="/odstrani" enctype=multipart/form-data>
-                            <button class="btn btn-primary" type="submit" name="odstrani" value="{{recept[2]}}" enctype="multipart/form-data">Odstrani ta recept</button>  
+                            <button class="btn btn-primary" type="submit" name="odstrani" value="{{recept[1]}}" enctype="multipart/form-data">Odstrani ta recept</button>  
                         </form> 
                     </div>                   
                 </div>                

@@ -8,17 +8,15 @@
 
 <form method="POST" action="/dodaj_recept" enctype=multipart/form-data>
   <div class="container">
-    <b>Vaša ime in priimek</b>
+      <b>Ime avtorja recepta</b>
       <div class="col col-lg-2">
-        <input type="text" class="form-control" placeholder="Ime" name="Ime">
+        <input type="text" class="form-control" value={{uporabnik}} name="Ime" required>
       </div>
-      <div class="col col-lg-2">
-        <input type="text" class="form-control" placeholder="Priimek" name="Priimek">
-      </div>
+    
     <br>  
     <b>Kako se imenuje vaša hrana?</b>
       <div class="col col-lg-2">
-        <input type="text" class="form-control" placeholder="Naslov recepta" name="Naslov">
+        <input type="text" class="form-control" placeholder="Naslov recepta" name="Naslov" required>
       </div> 
     <br>   
       <div class="row">
@@ -27,10 +25,10 @@
         <div class="col">      
           <br>
           <li> <b>Sestavine</b></li>
-          <textarea id="text" class="form-control" name="Sestavine" rows="5" cols="48" placeholder="Vsako sestavino in njeno količino napišite v svojo vrstico in pred njo postavite -, kot kaže primer. &#10 Primer: &#10 -1kg krompirja &#10 -500g piščanca"></textarea>
+          <textarea id="text" class="form-control" name="Sestavine" required rows="5" cols="48" placeholder="Vsako sestavino in njeno količino napišite v svojo vrstico in pred njo postavite -, kot kaže primer. &#10 Primer: &#10 -1kg krompirja &#10 -500g piščanca"></textarea>
           <br>
           <li><b>Postopek</b></li>
-          <textarea id="text" class="form-control" name="Postopek" rows="7" cols="48"></textarea>
+          <textarea id="text" class="form-control" name="Postopek" required rows="7" cols="48"></textarea>
         </div>
         </ul>
       </div>

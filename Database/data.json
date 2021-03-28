@@ -1,79 +1,63 @@
 {
     "uporabniki": {
         "person_1": {
-            "username": "user",
-            "password": "pass",
-            "liked_recipe": []
-        },
-        "person_2": {
             "username": "davi",
             "password": "bineopica",
             "liked_recipe": [
+                "Tilje",
+                "domaci viski"
+            ],
+            "disliked_recipe": [
+                "probavanje",
                 "Tilje"
             ]
         },
-        "person_3": {
-            "username": "bla",
-            "password": "blabla",
-            "liked_recipe": []
-        },
-        "person_4": {
+        "person_2": {
             "username": "darkofekonja",
             "password": "bonsaisozakon",
             "liked_recipe": [
                 "Tilje",
                 "domaci viski"
-            ]
+            ],
+            "disliked_recipe": []
         }
     },
     "recepti": {
         "recept_1": {
-            "owner": [
-                "David",
-                "Tegeltija"
-            ],
+            "owner": "davi",
             "title": "Tilje",
-            "ingredients": "-piscancek\r\n-paprika\r\n-cebula",
-            "procedure": "to usi znamo. nare\u017ee\u0161 zelenjavo, jo prepra\u017eis. Meso spe\u010des in to zmesas skupaj z dodatkom salse in paradi\u017enikove mezge",
+            "ingredients": "                    \r\n -piscancek\r\n \r\n                    \r\n  \r\n                    \r\n  \r\n                    \r\n -paprika\r\n \r\n               \r\n  \r\n                    \r\n  \r\n                    \r\n -cebula \r\n                     \r\n                     \r\n                    ",
+            "procedure": "to usi znamo. nare\u017ee\u0161 zelenjavo, jo prepra\u017eis. Meso spe\u010des in to zmesas skupaj z dodatkom salse in paradi\u017enikove mezge. To zavijemo v tortilje, posujemo s sirom in damo v pe\u010dico. Le-to segrejemo na 200C in pe\u010demo pribli\u017eno 20min.\r\nPostre\u017eite z doma\u010do mehi\u0161ko salso.",
             "image": "Database/tortilje.jpg",
-            "likes": 4,
-            "dislikes": 1
+            "likes": 6,
+            "dislikes": 3
         },
         "recept_2": {
-            "owner": [
-                "manca",
-                "fekonja"
-            ],
+            "owner": "davi",
             "title": "kgbl",
-            "ingredients": "jej",
+            "ingredients": "-pejte",
             "procedure": "sprejeta bom",
             "image": "Database/cat.jpg",
-            "likes": 3,
+            "likes": 5,
             "dislikes": 1
         },
         "recept_3": {
-            "owner": [
-                "darki",
-                "feki"
-            ],
+            "owner": "darki feki",
             "title": "domaci viski",
             "ingredients": "8z7t6rtuho",
             "procedure": "fzhkhkhgk",
             "image": "Database/noImage.png",
-            "likes": 6,
-            "dislikes": 0
+            "likes": 7,
+            "dislikes": 1
         },
         "recept_4": {
-            "owner": [
-                "fse",
-                "rhd"
-            ],
+            "owner": "fse rhd",
             "title": "hsh",
             "ingredients": "-tu\r\n-twe\r\n-ge",
             "procedure": "upam da bo delal",
             "image": "Database/noImage.png",
-            "likes": 3,
-            "dislikes": 1
+            "likes": 4,
+            "dislikes": 2
         }
     }
 }

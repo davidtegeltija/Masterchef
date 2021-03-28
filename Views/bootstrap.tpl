@@ -26,9 +26,12 @@
                           <a class="nav-link" href="/vseckano">Všečkani recepti</a>
                       </li>
                       <li class="nav-item" style="margin: 2px 10px 2px 10px;">
-                          <a class="nav-link" href="/dodaj">Dodaj svoj recept</a>
+                          <a class="nav-link" href="/dodaj">Dodajte svoj recept</a>
                       </li>                
                       %if uporabnik != "Gost":
+                      <li class="nav-item" style="margin: 2px 10px 2px 10px;">
+                          <a class="nav-link" href="/vasi_recepti">Vaši recepti</a>
+                      </li>
                       <li class="nav-item dropdown" style="margin: 2px 10px 2px 10px;">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                           Prijavljeni ste kot <b>{{uporabnik}} </b>

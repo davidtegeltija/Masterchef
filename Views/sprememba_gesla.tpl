@@ -13,7 +13,7 @@
                         <input type="text" class="form-control" placeholder="Staro geslo" name="Staro_geslo">
                     </div>                    
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Novo_geslo" name="Novo_geslo">
+                        <input type="text" class="form-control" placeholder="Novo geslo" name="Novo_geslo">
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Spremenite geslo</button>
