@@ -8,7 +8,9 @@
                 <h3 class="text-center">
                     {{recept[1]}}
                 </h3>
-                <p>Avtor: {{recept[0]}}</p>
+                <p>
+                    <b>Avtor: {{recept[0]}}</b>
+                </p>
                 <div class="col">
                 <b>Sestavine</b>
                     <textarea class="form-control" name="Nove_sestavine"  rows="5" cols="48">
@@ -20,8 +22,8 @@
                 </div> 
                
                 <p style="margin-top: 10%; margin-bottom: auto;">
-                 <b>Postopek</b>
-                    <textarea class="form-control" name="Nov_postopek"  rows="5" cols="48">{{recept[3]}}</textarea>
+                    <b>Postopek</b>
+                    <textarea class="form-control" name="Nov_postopek"  rows="5" cols="55">{{recept[3]}}</textarea>
                 </p>
             </div>
             <div class="col-md-6" style="background: #e0dcdc; padding: 5%;">

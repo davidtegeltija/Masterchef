@@ -20,13 +20,18 @@
                 <h3 class="text-center">
                     {{recept[1]}}
                 </h3>
-                <p>Avtor: {{recept[0]}}</p>
+                <p>
+                    <b>Avtor: {{recept[0]}}</b>
+                </p>
+                <b>Sestavine</b>
                 <ul>
                     %for i in recept[2]:
                     <li>{{i}}</li>
                     %end
                 </ul>
                 <p style="margin-top: 10%; margin-bottom: auto;">
+                    <b>Postopek</b>
+                    <br>
                     {{recept[3]}}
                 </p>
             </div>
