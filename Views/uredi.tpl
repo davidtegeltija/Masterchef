@@ -13,12 +13,7 @@
                 </p>
                 <div class="col">
                 <b>Sestavine</b>
-                    <textarea class="form-control" name="Nove_sestavine"  rows="5" cols="48">
-                    %for i in recept[2]:
-                    &#10 -{{i}} 
-                     %end
-                    </textarea>
-               
+                    <textarea class="form-control" name="Nove_sestavine"  rows="5" cols="48"> {{sestavine}}</textarea>
                 </div> 
                
                 <p style="margin-top: 10%; margin-bottom: auto;">
