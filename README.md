@@ -4,6 +4,7 @@ Spletna stran na kateri uporabnik deli svoje kuharske recepte z drugimi, glede r
 
 <h1> Funkcionalnost </h1>
 Na spletni strani lahko kdorkoli gleda recepte drugih, a če jih želi všečkati, komentirati ali pa dodati svoj recept, se mora na spletno strano registrirati in ustvariti svoj profil. Kot uporabnik je na spletni strani možno:
+<br>
 <ul>
     <li>všečkanje receptov na osnovni strani</li>
     <li>všečkani recepti se pojavijo v posebnem razdelku vidne samo uporabniku samemu</li>
@@ -15,11 +16,11 @@ Na spletni strani lahko kdorkoli gleda recepte drugih, a če jih želi všečkat
 </ul>
 
 <h1> Uporaba </h1>
-Če želite zagnati kodo, potrebujete programski jezik python. Ko to imate samo zaženete kodo website.py in kliknete na link http://localhost:8080/.
+Če želite zagnati kodo, potrebujete programski jezik python. Za delovanje kode ni potrebno naložiti nobenih posebnih knjižnic. Za oblikovanje templatov sem uporabil ogrodje Bootstrap. Ko to imate samo zaženete kodo "website.py" in kliknete na link "http://localhost:8080/."
 
 <h1> Viri in literatura </h1>
 <ul>
-    <li>Predavanja doc.dr.Matija Pretnarja</li>
+    <li>Predavanja doc. dr. Matija Pretnarja</li>
     <li><a href="https://www.youtube.com">Youtube</a></li>
     <li><a href="https://www.w3schools.com">W3Schools</a></li>
     <li><a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap</a></li>
