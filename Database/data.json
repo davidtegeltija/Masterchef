@@ -28,6 +28,16 @@
             "comments": [
                 "Waaaw zelo dobre tortilije s preprostim receptom. "
             ]
+        },
+        "recept_2": {
+            "owner": "David",
+            "title": "hahaha",
+            "ingredients": "-to\r\n-je\r\n-recept\r\n-za\r\n-probo",
+            "procedure": "preberjem afioa fi oa",
+            "image": "Database/noImage.png",
+            "likes": 0,
+            "dislikes": 0,
+            "comments": []
         }
     }
 }
