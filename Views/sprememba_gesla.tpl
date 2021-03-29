@@ -10,10 +10,10 @@
             <div class="col-3 mx-auto">
                 <div class="text-center">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Staro geslo" name="Staro_geslo">
+                        <input type="text" class="form-control" placeholder="Staro geslo" name="Staro_geslo" required>
                     </div>                    
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Novo geslo" name="Novo_geslo">
+                        <input type="password" class="form-control" placeholder="Novo geslo" name="Novo_geslo" required>
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Spremenite geslo</button>

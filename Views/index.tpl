@@ -58,7 +58,25 @@
                         </h4>                
                     </div>
                 %end
-            </div> 
+            </div>
+            <div class="col" style="background: #e0dcdc; padding: 5%;"> 
+                <p>
+                    <b>Komentarji:</b>
+                </p>
+                <ul>
+                    %for komentar in oseba[7]:
+                    <li>{{komentar}}</li>
+                    %end
+                </ul>
+                <p>
+                    <b>Dodajte svoj komentar</b>
+                </p>
+                <form method="POST" action="/komentiraj/{{oseba[1]}}" enctype=multipart/form-data>
+                    <textarea class="form-control" name="Komentar"></textarea>
+                    <br>
+                    <button class="btn btn-primary" type="submit" enctype="multipart/form-data">Dodaj komentar</button> 
+                </form>
+            </div>
         </div>
     </div>
     %end
@@ -103,6 +121,19 @@
                         </li>  
                     </ul>
                 </div>                
+            </div>
+            <div class="col" style="background: #e0dcdc; padding: 5%;"> 
+                <p>
+                    <b>Komentarji:</b>
+                </p>
+                <ul>
+                    %for komentar in oseba[7]:
+                    <li>{{komentar}}</li>
+                    %end
+                </ul>
+                <p>
+                    <b> Če želite komentirati recept se prijavite na spletno stran.</b>
+                </p>
             </div> 
         </div>
     </div>

@@ -20,6 +20,18 @@ def index():
         return bottle.template("index.tpl", podatki = podatki, vseckani_recepti = vsec_mi_je, nevseckani_recepti = ni_mi_vsec, uporabnik = bottle.request.get_cookie("uporabnik"))
     return bottle.template("index.tpl", podatki = podatki, uporabnik = "Gost")
 
+@bottle.post("/komentiraj/<recept>")
+def komentiraj(recept):
+    if zahtevaj_prijavo():
+        komentar = bottle.request.forms.get("Komentar")
+        data = read_json()
+        for recept_osebe in data["recepti"]:
+            if data["recepti"][recept_osebe]["title"] == recept:
+                data["recepti"][recept_osebe]["comments"].append(komentar)
+        write_json(data)
+        return bottle.redirect("/")
+    return bottle.template("neveljavna_prijava.tpl", sporocilo = "Za komentiranje receptov se morate prijaviti na spletno stran", uporabnik = "Gost")
+
 @bottle.post("/glasuj_za")
 def Glasuj_za():
     if zahtevaj_prijavo():
@@ -94,10 +106,10 @@ def dodaj_recept():
             return bottle.template("napacna_datoteka.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
         file_path = "Database/{file}".format(file=slika.filename) 
         slika.save(file_path)
-        data["recepti"][f"recept_{index}"] = {"owner" : ime, "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path, "likes" : 0, "dislikes" : 0}
+        data["recepti"][f"recept_{index}"] = {"owner" : ime, "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : file_path, "likes" : 0, "dislikes" : 0, "comments" : []}
         write_json(data)
     else:
-        data["recepti"][f"recept_{index}"] = {"owner" : ime, "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Database/noImage.png", "likes" : 0, "dislikes" : 0}
+        data["recepti"][f"recept_{index}"] = {"owner" : ime, "title" : naslov, "ingredients" : sestavine, "procedure" : postopek, "image" : "Database/noImage.png", "likes" : 0, "dislikes" : 0, "comments" : []}
         write_json(data)
     return bottle.redirect("/")
         
@@ -108,11 +120,15 @@ def vasi_recepti():
 
 @bottle.get("/uredi/<recept>")
 def uredi(recept):
+    data = read_json()
     for celoten_recept in seznam_podatkov():
         if celoten_recept[1] == recept: 
             urejani_recept = celoten_recept
             bottle.response.set_cookie("recept", urejani_recept[1], path='/')
-    return bottle.template("uredi.tpl", recept = urejani_recept, uporabnik = bottle.request.get_cookie("uporabnik"))
+            for recept_osebe in data["recepti"]:
+                if data["recepti"][recept_osebe]["title"] == recept:
+                    sestavine = data["recepti"][recept_osebe]["ingredients"]
+    return bottle.template("uredi.tpl", recept = urejani_recept, uporabnik = bottle.request.get_cookie("uporabnik"), sestavine = sestavine)
 
 @bottle.post("/shrani")
 def shrani():
@@ -169,8 +185,6 @@ def logiraj_me():
     if bottle.request.forms.get("Novo_uporabnisko_ime") and bottle.request.forms.get("Novo_geslo"):  
         nov_uporabnik = bottle.request.forms.get("Novo_uporabnisko_ime")
         novo_geslo = bottle.request.forms.get("Novo_geslo")
-        print(nov_uporabnik)
-        print(novo_geslo)
         if prosto_uporabnisko_ime(nov_uporabnik, novo_geslo):
             bottle.response.set_cookie("uporabnik", nov_uporabnik, path='/')
             data["uporabniki"][f"person_{index}"] = {"username" : nov_uporabnik, "password" : novo_geslo, "liked_recipe" : [], "disliked_recipe" : []}

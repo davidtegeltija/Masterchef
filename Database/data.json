@@ -1,12 +1,13 @@
 {
     "uporabniki": {
         "person_1": {
-            "username": "davi",
-            "password": "blabla",
-            "liked_recipe": [
-                "Tortilije"
-            ],
-            "disliked_recipe": []
+            "username": "David",
+            "password": "tego",
+            "liked_recipe": [],
+            "disliked_recipe": [
+                "Tortilije",
+                "Care"
+            ]
         },
         "person_2": {
             "username": "darkofekonja",
@@ -17,13 +18,16 @@
     },
     "recepti": {
         "recept_1": {
-            "owner": "davi",
+            "owner": "David",
             "title": "Tortilije",
-            "ingredients": "- 500g pi\u0161\u010dan\u010djih prsi\r\n- 1 \u010debula\r\n- 1 paprika\r\n- 700g sira\r\n- 10 tortilij\r\n- salsa\r\n- 1 paradi\u017enikova mezga",
+            "ingredients": "- 500g pi\u0161\u010dan\u010djih prsi\r\n- 1 \u010debula \r\n- 1 paprika   \r\n- 700g sira\r\n- 10 tortilij\r\n- salsa       \r\n- 1 paradi\u017enikova mezga      \r\n- sol in poper",
             "procedure": "Pi\u0161\u010danca skuhajte in ga potem natrgajte na manj\u0161e trakce. \u010cebulo in papriko nare\u017eite \u010dim manj\u0161e in jih skupaj s salso in poljubnimi za\u010dimbami zme\u0161ajte v lo\u010deni posodi. Ko ste pi\u0161\u010danca natrgali na manj\u0161e ko\u0161\u010dke jih dodajte v to posodo in vse skupaj zalijte s paradi\u017enikovo mezgo. Dobro zme\u0161ajte. Tortilje prere\u017eite po polovici in naribajte sir. Tako manj\u0161e tortilje pa potem za\u010dnite polniti z me\u0161anico, ki ste jo name\u0161ali v posodi. \u010cez to lahko v tortiljo dodate tudi \u017ee prej narezan sir. Tortilije polagajte v pladenj in \u010dez njih, preden jih daste v pe\u010dico, stresite \u0161e dodaten sir. Ko ste pladenj napolnili s polnimi, s sirom prekritimi tortiljami jih lahko \u0161e nama\u017eete s kak\u0161nim prelivom, potem pajih  dajte v \u017ee prej segreto pe\u010dico. Pe\u010dite jih na 200C pribli\u017eno 20min oziroma do zlato rjave barve testa.",
             "image": "Database/tortilje.jpg",
             "likes": 3,
-            "dislikes": 1
+            "dislikes": 2,
+            "comments": [
+                "Waaaw zelo dobre tortilije s preprostim receptom. "
+            ]
         }
     }
 }

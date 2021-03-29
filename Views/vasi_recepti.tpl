@@ -42,7 +42,7 @@
                 <div style="padding-top: 5%; padding-bottom: 5%;">
                     <div class="text-center">
                         <form method="GET" action="/uredi/{{recept[1]}}" enctype=multipart/form-data>
-                            <button class="btn btn-primary" type="submit"  enctype="multipart/form-data">Uredi svoj recept</button>  
+                            <button class="btn btn-primary" type="submit"  enctype="multipart/form-data">Uredite svoj recept</button>  
                         </form> 
                     </div>                   
                 </div>                

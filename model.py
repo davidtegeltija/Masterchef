@@ -43,6 +43,8 @@ def seznam_podatkov():
                 seznam_za_osebo.append(data["recepti"][oseba][lastnosti])
             if lastnosti == "dislikes":
                 seznam_za_osebo.append(data["recepti"][oseba][lastnosti])
+            if lastnosti == "comments":
+                seznam_za_osebo.append(data["recepti"][oseba][lastnosti])
 
         seznam_podatkov.append(seznam_za_osebo)
     return seznam_podatkov
