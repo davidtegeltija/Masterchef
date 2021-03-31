@@ -60,6 +60,7 @@
                 %end
             </div>
             <div class="col" style="background: #e0dcdc; padding: 5%;"> 
+            %if len(oseba[7]) != 0:
                 <p>
                     <b>Komentarji:</b>
                 </p>
@@ -76,6 +77,19 @@
                     <br>
                     <button class="btn btn-primary" type="submit" enctype="multipart/form-data">Dodaj komentar</button> 
                 </form>
+            %else:
+                <p>
+                    <b>Ta recept še nima komentarjev</b>
+                </p>
+                <p>
+                    <b>Dodajte svoj komentar</b>
+                </p>
+                <form method="POST" action="/komentiraj/{{oseba[1]}}" enctype=multipart/form-data>
+                    <textarea class="form-control" name="Komentar"></textarea>
+                    <br>
+                    <button class="btn btn-primary" type="submit" enctype="multipart/form-data">Dodaj komentar</button> 
+                </form>
+            %end
             </div>
         </div>
     </div>
@@ -123,6 +137,7 @@
                 </div>                
             </div>
             <div class="col" style="background: #e0dcdc; padding: 5%;"> 
+            %if len(oseba[7]) != 0:
                 <p>
                     <b>Komentarji:</b>
                 </p>
@@ -131,9 +146,11 @@
                     <li>{{komentar}}</li>
                     %end
                 </ul>
+            %else:
                 <p>
-                    <b> Če želite komentirati recept se prijavite na spletno stran.</b>
+                    <b>Ta recept še nima komentarjev</b>
                 </p>
+            %end
             </div> 
         </div>
     </div>
