@@ -47,10 +47,6 @@
                       </li>
                       %end
                   </ul>
-                  <form class="d-flex" method="GET" action="error.html">
-                    <input class="form-control me-2" type="search" placeholder="Najdi">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pojdi</button>
-                  </form>
               </div>
           </div>
       </nav>
