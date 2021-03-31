@@ -13,7 +13,8 @@
             "username": "darkofekonja",
             "password": "bonsaisozakon",
             "liked_recipe": [
-                "Tortilije"
+                "Tortilije",
+                "Skutina torta"
             ],
             "disliked_recipe": [
                 "Gobova juha"
@@ -49,7 +50,7 @@
             "ingredients": " - 200g mleti pi\u0161koti (plazma, leibniz)\r\n- 100g masla\r\n-750g pasirane skute\r\n-10 \u017elic sladkorja\r\n- 2 vre\u010di vanilij sladkorja\r\n- 0.5l sladke smetane\r\n- 30g \u017eelatine\r\n- 8 \u017elic vode\r\n- 600g malin in borovnic\r\n",
             "procedure": "Mlete pi\u0161kote zme\u0161amo z maslom. V lo\u017eeno posodo dodamo \u017eelatino in 8 \u017elic vode stresemo skupaj in dodamo 0.5l sladke smetane. To dobro zme\u0161amo in dodamo v posodo, kjer smo prej \u017eme\u0161ali pasirano skuto, 10 \u017elic sladkorja in 2 vre\u010dki vanilij sladkorja. Vse to pa \u0161e enkrat dobro preme\u0161amo. V maso dodamo \u0161e maline in borovnice.\r\nV tortni model pripravi\u0161 peki papir in maso (pi\u0161kot in maslo) in potepta\u0161 po dnu. Torto v peka\u010du da\u0161 v hladilnik \u010dez no\u010d.",
             "image": "Database/skutina-torta.jpg",
-            "likes": 0,
+            "likes": 1,
             "dislikes": 0,
             "comments": []
         }

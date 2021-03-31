@@ -49,18 +49,6 @@ def seznam_podatkov():
         seznam_podatkov.append(seznam_za_osebo)
     return seznam_podatkov
 
-def seznam_slik():
-    data = read_json()
-    slike = []
-    for oseba in data["recepti"]:
-        kljuci = data["recepti"][oseba].keys()
-        for lastnosti in kljuci:
-            if lastnosti == "image":
-                if data["recepti"][oseba][lastnosti] is not None:
-                    ime_slike = data["recepti"][oseba][lastnosti].split("/")
-                    slike.append(ime_slike[1])  
-    return slike
-
 def seznam_receptov():
     data = read_json()
     recepti = []
@@ -68,13 +56,6 @@ def seznam_receptov():
         ime_recepta = data["recepti"][oseba]["title"]
         recepti.append(ime_recepta)
     return recepti
-
-def veljaven_recept(ime, priimek, sestavine, postopek):
-    if len(ime) or len(priimek) != 0:
-        if len(sestavine) != 0:
-            if len(postopek) != 0:
-                return True
-    return False
         
 def glasuj_za(recept):
     data = read_json()
