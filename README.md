@@ -16,7 +16,7 @@ Na spletni strani lahko kdorkoli gleda recepte drugih, a če jih želi všečkat
 </ul>
 
 <h1> Uporaba </h1>
-Za oblikovanje templatov sem uporabil ogrodje Bootstrap. Če želite zagnati kodo, potrebujete programski jezik python. Za delovanje kode ni potrebno naložiti nobenih posebnih knjižnic. Ko to imate samo zaženete kodo <i>website.py</i> in v svoj brskalnik kopirate link <i>http://localhost:8080/.</i>
+Za oblikovanje templatov sem uporabil ogrodje Bootstrap. Če želite zagnati kodo, potrebujete programski jezik python. Za delovanje kode ni potrebno naložiti nobenih posebnih knjižnic. Ko to imate samo zaženete kodo <code>website.py</code> in v svoj brskalnik kopirate link <code>http://localhost:8080/.</code>
 
 <h1> Viri in literatura </h1>
 <ul>
