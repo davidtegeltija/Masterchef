@@ -303,3 +303,14 @@ def shrani(Recept, nove_sestavine, nov_postopek, nova_slika):
                     nova_slika.save(file_path)
                     data["recepti"][recept]["image"] = file_path
     write_json(data)
+
+
+
+
+
+def sprememba_gesla(staro_geslo, novo_geslo):
+    data = read_json()
+    for uporabnik in data["uporabniki"]:
+        if data["uporabniki"][uporabnik]["password"] == staro_geslo:
+            data["uporabniki"][uporabnik]["password"] = novo_geslo
+    write_json(data)

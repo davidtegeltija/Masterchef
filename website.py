@@ -177,7 +177,7 @@ def nov_profil():
 
 
 @bottle.post("/logiraj_me")
-def logiraj_me():
+def Logiraj_me():
     data = read_json()
     ostevilcenje = len(data["uporabniki"]) + 1
 
@@ -214,21 +214,17 @@ def logiraj_me():
 
 
 @bottle.get("/spremenite_geslo")
-def sprememba_gesla():
+def Sprememba_gesla():
     return bottle.template("sprememba_gesla.tpl", uporabnik = bottle.request.get_cookie("uporabnik"))
 
 
 @bottle.post("/spremenite_geslo")
-def sprememba_gesla():
+def Sprememba_gesla():
     staro_geslo = bottle.request.forms.get("Staro_geslo")
     novo_geslo = bottle.request.forms.get("Novo_geslo")
     ime = bottle.request.get_cookie("uporabnik")
     if preveri_prijavo(ime, staro_geslo):
-        data = read_json()
-        for uporabnik in data["uporabniki"]:
-            if data["uporabniki"][uporabnik]["password"] == staro_geslo:
-                data["uporabniki"][uporabnik]["password"] = novo_geslo
-        write_json(data)
+        sprememba_gesla(staro_geslo, novo_geslo)
         return bottle.redirect("/")
     else:
         return bottle.template("neveljavna_prijava.tpl", 
